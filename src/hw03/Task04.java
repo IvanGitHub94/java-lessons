@@ -7,19 +7,6 @@ import java.util.Scanner;
 public class Task04 {
     public static void main(String args[]) {
 
-        /*final int MIN = 1;
-        final int MAX = 100;
-
-        Random r = new Random();
-        int ranNumber = 0;
-
-        System.out.printf("Zagadaite chislo ot %d do %d%n", MIN, MAX);
-        System.out.println("Vvedite 'Ok' dlay starta: ");
-
-        Scanner sca = new Scanner(System.in);
-        int tmin = MIN;
-        int tmax = MAX;*/
-
         boolean b = true;
         int bottom = 2;
         int top = 100;
