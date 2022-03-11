@@ -1,11 +1,25 @@
 package hw03;
 
+import java.util.Random;
 import java.util.Scanner;
 
 // 87
 public class Task04 {
-    public static void main(String[] args) {
-        //int target = 2 + Math.random() * 3;
+    public static void main(String args[]) {
+
+        /*final int MIN = 1;
+        final int MAX = 100;
+
+        Random r = new Random();
+        int ranNumber = 0;
+
+        System.out.printf("Zagadaite chislo ot %d do %d%n", MIN, MAX);
+        System.out.println("Vvedite 'Ok' dlay starta: ");
+
+        Scanner sca = new Scanner(System.in);
+        int tmin = MIN;
+        int tmax = MAX;*/
+
         boolean b = true;
         int bottom = 2;
         int top = 100;
@@ -17,35 +31,33 @@ public class Task04 {
         int num = bottom + (int) (Math.random() * (top - bottom + 1));
 
         System.out.println("Число равно " + num + " ?");
-        while (b) {
-            Scanner scanner = new Scanner(System.in);
-            byte answer = scanner.nextByte();
-            if (answer != 0 && answer != 1) {
-                System.out.println("Некорректный ввод, введите \"0\" или \"1\":");
-            }
-            else { //////////////////////////////////////////////////////////////
-                if (answer == 1) {
-                    System.out.println("Программа угадала число. Работа завершена.");
-                    b = false;
-                }
-                else {
-                    int temp = 0;
-                    System.out.println("Число больше " + num + " ?");
-                    answer = scanner.nextByte();
+        Scanner scanner = new Scanner(System.in);
 
-                    if (answer == 1) {
-                        temp = num;
-                        temp = temp + (int) (Math.random() * (top - temp + 1));
-                        System.out.println("Число равно " + temp + " ?");
-                        //answer = scanner.nextByte();
-                    }
-                    else {
-                        temp = num;
-                        temp = bottom + (int) (Math.random() * (temp - bottom + 1));
-                        System.out.println("Число равно " + temp + " ?");
-                        //answer = scanner.nextByte();
-                    }
-                }
+        int tmin = bottom;
+        int tmax = top;
+
+        while (b) {
+            byte command = scanner.nextByte();
+            switch (command) {
+                case 1:
+                    System.out.println("Число угадано. Работа программы завершена.");
+                    b = false;
+                    break;
+                case 0:
+                    System.out.println("Число больше, чем " + num + " ?");
+                    byte answer = scanner.nextByte();
+                        switch (answer) {
+                            case 1:
+                            tmin = num;
+                            num = num + (tmax - tmin) / 2;
+                            System.out.println("Ваше число " + num + " ?");
+                            break;
+                            case 0:
+                                tmax = num;
+                                num = num - (tmax - tmin) / 2;
+                                System.out.println("Ваше число " + num + " ?");
+                                break;
+                        }
             }
         }
     }
