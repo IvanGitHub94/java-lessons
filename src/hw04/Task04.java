@@ -39,7 +39,7 @@ public class Task04 {
             }
         }
 
-        System.out.println("Мессив с четными числами: " + Arrays.toString(arrCh));
-        System.out.println("Мессив с нечетными числами: " + Arrays.toString(arrNeCh));
+        System.out.println("Массив с четными числами: " + Arrays.toString(arrCh));
+        System.out.println("Массив с нечетными числами: " + Arrays.toString(arrNeCh));
     }
 }
