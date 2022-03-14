@@ -12,18 +12,10 @@ public class Task04 {
         if (arr.length % 2 != 0) {
             leng1 = leng;
             leng2 = arr.length - leng;
-            //int[] arrNeCh = new int[len];
-            //int[] arrCh = new int[arr.length - arrNeCh.length];
-            //System.out.println("Длина четного массива: " + arrCh.length);
-            //System.out.println("Длина нечетного массива: " + arrNeCh.length);
         }
         else {
             leng1 = arr.length - leng;
             leng2 = leng;
-            //int[] arrCh = new int[len];
-            //int[] arrNeCh = new int[arr.length - arrCh.length];
-            //System.out.println("Длина четного массива: " + arrCh.length);
-            //System.out.println("Длина нечетного массива: " + arrNeCh.length);
         }
 
         int[] arrNeCh = new int[leng1];
