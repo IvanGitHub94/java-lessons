@@ -10,17 +10,12 @@ public class Task04 {
         String[] arr = newStr.split("");
 
         System.out.println(newStr);
-        System.out.println(newStr.length());
-        //System.out.println(newStr.length() / 2);
 
         int left = 0, right = newStr.length() - 1, middle = newStr.length() / 2;
 
-        int d = 0;
-        if (newStr.length() % 2 != 0) {
-            d = newStr.length() - 1;
-        }
-        else {
-            right = newStr.length(); // 6
+        int d = newStr.length() - 1;;
+        if (newStr.length() % 2 == 0) {
+            right = newStr.length();
             d = newStr.length() - 1;
         }
 
@@ -36,25 +31,5 @@ public class Task04 {
                 }
             }
             if (left == right) System.out.println("Слово является палиндромом.");
-            System.out.println(left);
-            System.out.println(right);
         }
-        /*else { // четная
-            System.out.println("----" + middle);
-
-            while (left < middle && right > middle) {
-                if (!arr[left].equals(arr[d])) {
-                    System.out.println("Слово не является палиндромом.");
-                    break;
-                }
-                else {
-                    left++;
-                    right--; // 6 - 1
-                    d--;
-                }
-            }
-            if (left == right) System.out.println("Слово является палиндромом.");
-            System.out.println(left);
-            System.out.println(right);
-        }*/
     }
