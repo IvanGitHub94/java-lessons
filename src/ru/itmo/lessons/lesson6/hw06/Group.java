@@ -27,6 +27,9 @@ public class Group {
     }
 
     public void setAlpArr(Alpinist[] alpArr) {
+        if (alpArr.length == 0) {
+            throw new IllegalArgumentException("Массив должен иметь минимум 1 элемент");
+        }
         this.alpArr = alpArr;
     }
 
