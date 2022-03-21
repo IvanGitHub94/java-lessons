@@ -1,7 +1,5 @@
 package ru.itmo.lessons.lesson6.hw06;
 
-import java.util.Objects;
-
 public class Group {
     private String groupName;
     private boolean openGroup; // набор в группу ведется или нет
