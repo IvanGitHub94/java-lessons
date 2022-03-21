@@ -1,25 +1,15 @@
 package ru.itmo.lessons.lesson7.hw07;
 
-public class Student {
-    private String name;
-    private int age;
-    private String schoolSubject;
+public class Student extends LessonProcess {
+    //private String subject;
     private int levelKnowlege;
 
     // Конструкторы
-    public Student(String name, int age) {
-        setName(name);
-        setAge(age);
+    public Student(String name, int age, String subject) {
+        super(name, age, subject);
     }
 
     // Сеттеры
-    public void setName(String name) {
-        if (name == null || name.length() < 2) {
-            throw new IllegalArgumentException("Значение name должно быть не менее 2 символов.");
-        }
-        this.name = name;
-    }
-
     public void setAge(int age) {
         if (age < 6 || age > 19) {
             throw new IllegalArgumentException("В школе не учатся люди возрастом меньше 6 и больше 19 лет.");
@@ -29,11 +19,11 @@ public class Student {
         this.age = age;
     }
 
-    public void setSchoolSubject(String schoolSubject) {
-        if (schoolSubject == null || schoolSubject.length() < 2) {
+    public void setSchoolSubject(String subject) {
+        if (subject == null || subject.length() < 2) {
             throw new IllegalArgumentException("Значение schoolSubject должно быть не менее 2 символов.");
         }
-        this.schoolSubject = schoolSubject;
+        this.subject = subject;
     }
 
     public void setLevelKnowlege(int levelKnowlege) {
@@ -53,7 +43,7 @@ public class Student {
     }
 
     public String getSchoolSubject() {
-        return schoolSubject;
+        return subject;
     }
 
     public int getLevelKnowlege() {

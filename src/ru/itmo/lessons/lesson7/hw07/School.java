@@ -1,7 +1,5 @@
 package ru.itmo.lessons.lesson7.hw07;
 
-import ru.itmo.lessons.lesson6.hw06.Alpinist;
-
 public class School {
     private String schoolName; // без сеттера
     private Director director;

@@ -1,27 +1,15 @@
 package ru.itmo.lessons.lesson7.hw07;
 
-import ru.itmo.lessons.lesson6.hw06.Alpinist;
-
-public class Teacher {
-    private String name;
-    private int age;
-    private String teachSubject;
+public class Teacher extends LessonProcess{
+    //private String subject;
     private int teacherLevel;
 
     // Конструкторы
-    public Teacher(String name, int age) {
-        setName(name);
-        setAge(age);
+    public Teacher(String name, int age, String subject) {
+        super(name, age, subject);
     }
 
     // Сеттеры
-    public void setName(String name) {
-        if (name == null || name.length() < 2) {
-            throw new IllegalArgumentException("Значение name должно быть не менее 2 символов.");
-        }
-        this.name = name;
-    }
-
     public void setAge(int age) {
         if (age < 25 || age > 99) {
             throw new IllegalArgumentException("В школе не могут преподавать люди возрастом меньше 25 и больше 99 лет.");
@@ -32,11 +20,11 @@ public class Teacher {
         this.age = age;
     }
 
-    public void setTeachSubject(String teachSubject) {
-        if (teachSubject == null || teachSubject.length() < 2) {
-            throw new IllegalArgumentException("Значение teachSubject должно быть не менее 2 символов.");
+    public void setTeachSubject(String subject) {
+        if (subject == null || subject.length() < 2) {
+            throw new IllegalArgumentException("Значение subject должно быть не менее 2 символов.");
         }
-        this.teachSubject = teachSubject;
+        this.subject = subject;
     }
 
     public void setTeacherLevel(int teacherLevel) {
@@ -57,7 +45,7 @@ public class Teacher {
     }
 
     public String getTeachSubject() {
-        return teachSubject;
+        return subject;
     }
 
     public int getTeacherLevel() {
