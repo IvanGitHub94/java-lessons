@@ -29,7 +29,7 @@ public class School {
         this.students = students;
     }
 
-    // Геттеры
+    // Геттеры (не используются)
     public String getSchoolName() {
         return schoolName;
     }
@@ -54,7 +54,7 @@ public class School {
         for (Teacher teacher : teachers) {
             for (Student student : students) {
                 if (teacher != null && student != null) {
-                    if (teacher.getTeachSubject().equalsIgnoreCase(student.getSchoolSubject())) {
+                    if (teacher.getSubject().equalsIgnoreCase(student.getSubject())) {
                         System.out.println("==========");
                         System.out.println("Уровень навыка учителя " + teacher.getName()
                                 + " равен " + teacher.getTeacherLevel());
@@ -63,7 +63,7 @@ public class School {
                         System.out.println("==========");
                         System.out.println("Учитель " + teacher.getName()
                                 + " обучает ученика " + student.getName()
-                                + " предмету " + teacher.getTeachSubject());
+                                + " предмету " + teacher.getSubject());
                         System.out.println("Уровень знаний ученика вырос до значения " +
                                 teacher.teach(student));
                     } else {

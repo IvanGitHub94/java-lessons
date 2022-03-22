@@ -16,4 +16,9 @@ abstract public class LessonProcess extends People{
         }
         this.subject = subject;
     }
+
+    // Геттеры
+    public String getSubject() {
+        return subject;
+    }
 }

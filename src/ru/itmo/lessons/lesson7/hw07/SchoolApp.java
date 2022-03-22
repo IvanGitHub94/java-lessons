@@ -37,7 +37,7 @@ public class SchoolApp {
 ///////////////////////////////////////////////////
         for (Student st : studentsArr) {
             if (st != null) {
-                System.out.println(st.getName() + " " + st.getLevelKnowlege() + " " + st.getSchoolSubject());
+                System.out.println(st.getName() + " " + st.getLevelKnowlege() + " " + st.getSubject());
             }
         }
     }

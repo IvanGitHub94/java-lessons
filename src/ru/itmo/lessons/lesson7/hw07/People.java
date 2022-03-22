@@ -25,10 +25,10 @@ abstract public class People {
         this.age = age;
     }
 
+    // Геттеры
     public String getName() {
         return name;
     }
-
     public int getAge() {
         return age;
     }

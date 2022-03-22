@@ -18,17 +18,10 @@ public class Student extends LessonProcess {
         this.age = age;
     }
 
-    public void setSchoolSubject(String subject) {
-        if (subject == null || subject.length() < 2) {
-            throw new IllegalArgumentException("Значение schoolSubject должно быть не менее 2 символов.");
-        }
-        this.subject = subject;
-    }
-
     // Геттеры
-    public String getSchoolSubject() {
+    /*public String getSchoolSubject() {
         return subject;
-    }
+    }*/
 
     public int getLevelKnowlege() {
         return levelKnowlege;

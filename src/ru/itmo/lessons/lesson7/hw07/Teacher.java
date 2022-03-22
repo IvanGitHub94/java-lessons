@@ -28,10 +28,6 @@ public class Teacher extends LessonProcess{
     }
 
     // Геттеры
-    public String getTeachSubject() {
-        return subject;
-    }
-
     public int getTeacherLevel() {
         return teacherLevel;
     }
