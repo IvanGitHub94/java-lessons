@@ -7,29 +7,18 @@ public class SchoolApp {
 
         // Учителя
         Teacher t1 = new Teacher("Варвара Петровна", 51, "География");
-        t1.setTeacherLevel(7);
-
+            t1.setTeacherLevel(7);
         Teacher t2 = new Teacher("Валерий Николаевич", 44, "История");
-        t2.setTeacherLevel(6);
-
+            t2.setTeacherLevel(6);
         Teacher t3 = new Teacher("Людмила Алексеевна", 37, "Математика");
-        t3.setTeacherLevel(8);
+            t3.setTeacherLevel(8);
 
         // Студенты
         Student s1 = new Student("Петров", 12, "География");
-        s1.setLevelKnowlege(2);
-
         Student s2 = new Student("Иванова", 14, "География");
-        s2.setLevelKnowlege(3);
-
         Student s3 = new Student("Сидоров", 9, "Математика");
-        s3.setLevelKnowlege(1);
-
         Student s4 = new Student("Смирнов", 8, "Математика");
-        s4.setLevelKnowlege(0);
-
         Student s5 = new Student("Николаева", 10, "История");
-        s5.setLevelKnowlege(4);
 
         // Массив учителей
         Teacher[] teachArr = new Teacher[3];
@@ -38,16 +27,18 @@ public class SchoolApp {
 
         // Школа
         School school = new School("Средняя школа №1", d);
-        school.setTeachers(teachArr);
-        school.addTeacher(t1, t2, t3);
+            school.setTeachers(teachArr);
+            school.addTeacher(t1, t2, t3);
 
-        school.setStudents(studentsArr);
-        school.addStudent(s4, s5);
+            school.setStudents(studentsArr);
+            school.addStudent(s1, s3);
 ///////////////////////////////////////////////////
-        school.schoolDay(d, teachArr, studentsArr);
+            school.schoolDay();
 ///////////////////////////////////////////////////
         for (Student st : studentsArr) {
-            System.out.println(st.getName() + " " + st.getLevelKnowlege() + " " + st.getSchoolSubject());
+            if (st != null) {
+                System.out.println(st.getName() + " " + st.getLevelKnowlege() + " " + st.getSchoolSubject());
+            }
         }
     }
 }

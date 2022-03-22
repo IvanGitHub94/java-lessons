@@ -1,7 +1,6 @@
 package ru.itmo.lessons.lesson7.hw07;
 
 public class Student extends LessonProcess {
-    //private String subject;
     private int levelKnowlege;
 
     // Конструкторы
@@ -26,22 +25,7 @@ public class Student extends LessonProcess {
         this.subject = subject;
     }
 
-    public void setLevelKnowlege(int levelKnowlege) {
-        if (age < 0) {
-            throw new IllegalArgumentException("Уровень знаний не может быть отрицательным.");
-        }
-        this.levelKnowlege = levelKnowlege;
-    }
-
     // Геттеры
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
     public String getSchoolSubject() {
         return subject;
     }

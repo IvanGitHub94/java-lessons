@@ -1,7 +1,6 @@
 package ru.itmo.lessons.lesson7.hw07;
 
 public class Teacher extends LessonProcess{
-    //private String subject;
     private int teacherLevel;
 
     // Конструкторы
@@ -20,13 +19,6 @@ public class Teacher extends LessonProcess{
         this.age = age;
     }
 
-    public void setTeachSubject(String subject) {
-        if (subject == null || subject.length() < 2) {
-            throw new IllegalArgumentException("Значение subject должно быть не менее 2 символов.");
-        }
-        this.subject = subject;
-    }
-
     public void setTeacherLevel(int teacherLevel) {
         if (age < 1) {
             throw new IllegalArgumentException("Уровень навыка не может быть менее 1.");
@@ -36,14 +28,6 @@ public class Teacher extends LessonProcess{
     }
 
     // Геттеры
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
     public String getTeachSubject() {
         return subject;
     }
@@ -53,7 +37,7 @@ public class Teacher extends LessonProcess{
     }
 
     // Методы
-    public int teach(Student s, int teacherLevel) {
-        return s.studentToStudy(teacherLevel);
+    public int teach(Student s) {
+        return s.studentToStudy(this.teacherLevel);
     }
 }

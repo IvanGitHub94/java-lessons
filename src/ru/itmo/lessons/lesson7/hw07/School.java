@@ -47,28 +47,29 @@ public class School {
     }
 
     // Методы
-    public void schoolDay(Director director, Teacher[] teachers, Student[] students) {
+    public void schoolDay() {
         director.announceStart();
         System.out.println("-----------------------");
 
-        for (int i = 0; i < teachers.length; i++) {
-            for (int j = 0; j < students.length; j++) {
-                if (teachers[i].getTeachSubject().equalsIgnoreCase(students[j].getSchoolSubject())) {
-                    System.out.println("==========");
-                    System.out.println("Уровень навыка учителя " + teachers[i].getName()
-                            + " равен " + teachers[i].getTeacherLevel());
-                    System.out.println("Уровень знаний ученика " + students[j].getName()
-                            + " равен " + students[j].getLevelKnowlege());
-                    System.out.println("==========");
-                    System.out.println("Учитель " + teachers[i].getName()
-                            + " обучает ученика " + students[j].getName()
-                            + " предмету " + teachers[i].getTeachSubject());
-                    System.out.println("Уровень знаний ученика вырос до значения " +
-                            teachers[i].teach(students[j], teachers[i].getTeacherLevel()) );
-                }
-                else {
-                    System.out.println("( Школьные предметы учителя " + teachers[i].getName()
-                            + " и ученика " + students[j].getName() + " не совпадают ).");
+        for (Teacher teacher : teachers) {
+            for (Student student : students) {
+                if (teacher != null && student != null) {
+                    if (teacher.getTeachSubject().equalsIgnoreCase(student.getSchoolSubject())) {
+                        System.out.println("==========");
+                        System.out.println("Уровень навыка учителя " + teacher.getName()
+                                + " равен " + teacher.getTeacherLevel());
+                        System.out.println("Уровень знаний ученика " + student.getName()
+                                + " равен " + student.getLevelKnowlege());
+                        System.out.println("==========");
+                        System.out.println("Учитель " + teacher.getName()
+                                + " обучает ученика " + student.getName()
+                                + " предмету " + teacher.getTeachSubject());
+                        System.out.println("Уровень знаний ученика вырос до значения " +
+                                teacher.teach(student));
+                    } else {
+                        System.out.println("( Школьные предметы учителя " + teacher.getName()
+                                + " и ученика " + student.getName() + " не совпадают ).");
+                    }
                 }
             }
             System.out.println("-----------------------");
