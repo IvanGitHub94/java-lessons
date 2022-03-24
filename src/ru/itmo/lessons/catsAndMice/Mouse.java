@@ -20,7 +20,7 @@ public class Mouse {
 
     public void setName(String name) {
         if (name == null || name.length() < 2) {
-            throw new IllegalArgumentException("Значение name должно быть не менее 2 символов");
+            throw new IllegalArgumentException("Значение name должно быть не менее 2 символов.");
         }
         this.name = name;
     }

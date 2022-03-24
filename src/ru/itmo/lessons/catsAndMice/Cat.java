@@ -1,7 +1,5 @@
 package ru.itmo.lessons.catsAndMice;
 
-import ru.itmo.lessons.lesson6.hw06.Alpinist;
-
 import java.util.Arrays;
 
 public class Cat {
