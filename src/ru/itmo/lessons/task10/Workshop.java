@@ -2,8 +2,11 @@ package ru.itmo.lessons.task10;
 
 import ru.itmo.lessons.lesson7.hw07.Teacher;
 
+import java.util.Scanner;
+
 public class Workshop implements Repair {
     private Transport[] tr;
+    private int aerosolCount;
 
     // ----------------------------------------- Setters
     public void setTransport(Transport[] tr) {
@@ -13,9 +16,20 @@ public class Workshop implements Repair {
         this.tr = tr;
     }
 
+    public void setAerosolCount(int aerosolCount) {
+        if (aerosolCount < 0) {
+            throw new IllegalArgumentException("Количество краски не может быть отрицательным.");
+        }
+        this.aerosolCount = aerosolCount;
+    }
+
     // ----------------------------------------- Getters
     public Transport[] getTransport() {
         return tr;
+    }
+
+    public int getWhiteAerosolCount() {
+        return aerosolCount;
     }
 
     // ----------------------------------------- Methods
@@ -52,6 +66,53 @@ public class Workshop implements Repair {
                     velo.doRepair();
                 }
                 else System.out.println("Данный транспорт не ремонтируется в мастерской.");
+            }
+        }
+    }
+
+    public void newColorWorkshop() {
+        Scanner scanner = new Scanner(System.in);
+        for (Transport tran : this.getTransport()) {
+            if (tran != null) {
+                if (aerosolCount == 0) {
+                    System.out.println("Краска закончилась. Ни одно транспортное средство не может быть окрашено.");
+                    return;
+                } else {
+                    if (tran instanceof Velo) {
+                        Velo velo = (Velo) tran;
+                            System.out.println("Введите цвет, которым вы хотите окрасить велосипед " + velo.getBrandName() + ":");
+                        velo.newColor(scanner.nextLine());
+                            System.out.println("Аэрозоль до: " + aerosolCount);
+                        setAerosolCount(aerosolCount - 1);
+                            System.out.println("Аэрозоль после: " + aerosolCount);
+                            System.out.println("==========================================");
+                        // минус 1 краска
+                    } else if (tran instanceof Macine) {
+                        Macine mac = (Macine) tran;
+                        if (aerosolCount < 10) {
+                            System.out.println("Нехватка краски. Данное транспортное средство (" + mac.getBrandName() + ") не может быть окрашено.");
+                        } else {
+                                System.out.println("Введите цвет, которым вы хотите окрасить машину " + mac.getBrandName() + ":");
+                            mac.newColor(scanner.nextLine());
+                                System.out.println("Аэрозоль до: " + aerosolCount);
+                            setAerosolCount(aerosolCount - 10);
+                                System.out.println("Аэрозоль после: " + aerosolCount);
+                                System.out.println("==========================================");
+                        }
+                    } else {
+                        Train train = (Train) tran;
+                        if (aerosolCount < 50) {
+                            System.out.println("Нехватка краски. Данное транспортное средство (" + train.getBrandName() + ") не может быть окрашено.");
+                        } else {
+                                System.out.println("Введите цвет, которым вы хотите окрасить поезд " + train.getBrandName() + ":");
+                            train.newColor(scanner.nextLine());
+                                System.out.println("Аэрозоль до: " + aerosolCount);
+                            setAerosolCount(aerosolCount - 50);
+                                System.out.println("Аэрозоль после: " + aerosolCount);
+                                System.out.println("==========================================");
+                        }
+                    }
+                }
             }
         }
     }

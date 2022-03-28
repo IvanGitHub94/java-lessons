@@ -24,6 +24,7 @@ public class Train extends Transport implements ColorChange {
     // ----------------------------------------- Methods
     @Override
     public void newColor(String color) {
-
+        setColor(color);
+        System.out.println("Поезд покрашен! Цвет - " + color);
     }
 }

@@ -58,6 +58,7 @@ public class Velo extends Transport implements Repair, ColorChange {
 
     @Override
     public void newColor(String color) {
-
+        setColor(color);
+        System.out.println("Велосипед покрашен! Цвет - " + color);
     }
 }

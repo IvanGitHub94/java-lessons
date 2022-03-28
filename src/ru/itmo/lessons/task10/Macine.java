@@ -78,6 +78,7 @@ public class Macine extends Transport implements Repair, ColorChange {
 
     @Override
     public void newColor(String color) {
-
+        setColor(color);
+        System.out.println("Машина покрашена! Цвет - " + color);
     }
 }
