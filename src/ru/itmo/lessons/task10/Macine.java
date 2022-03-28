@@ -1,6 +1,7 @@
 package ru.itmo.lessons.task10;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Macine extends Transport implements Repair, ColorChange {
     private String number;
@@ -24,17 +25,6 @@ public class Macine extends Transport implements Repair, ColorChange {
     }
 
     // ----------------------------------------- Methods
-
-
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Macine macine = (Macine) o;
-        return Objects.equals(number, macine.number);
-    }*/
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,8 +67,10 @@ public class Macine extends Transport implements Repair, ColorChange {
     }
 
     @Override
-    public void newColor(String color) {
-        setColor(color);
-        System.out.println("Машина покрашена! Цвет - " + color);
+    public void newColor() {
+        Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите цвет, которым вы хотите окрасить машину " + this.getBrandName() + ":");
+        setColor(scanner.nextLine());
+            System.out.println("Машина покрашена! Цвет - " + getColor());
     }
 }

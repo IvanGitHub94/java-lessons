@@ -1,10 +1,6 @@
 package ru.itmo.lessons.task10;
 
-import ru.itmo.lessons.lesson7.hw07.Teacher;
-
-import java.util.Scanner;
-
-public class Workshop implements Repair {
+public class Workshop implements Repair, ColorChange {
     private Transport[] tr;
     private int aerosolCount;
 
@@ -28,7 +24,7 @@ public class Workshop implements Repair {
         return tr;
     }
 
-    public int getWhiteAerosolCount() {
+    public int getAerosolCount() {
         return aerosolCount;
     }
 
@@ -57,12 +53,10 @@ public class Workshop implements Repair {
     public void doRepair() {
         for (Transport tran : this.getTransport()) {
             if (tran != null) {
-                if (tran instanceof Macine) {
-                    Macine mac = (Macine) tran;
+                if (tran instanceof Macine mac) {
                     mac.doRepair();
                 }
-                else if (tran instanceof Velo) {
-                    Velo velo = (Velo) tran;
+                else if (tran instanceof Velo velo) {
                     velo.doRepair();
                 }
                 else System.out.println("Данный транспорт не ремонтируется в мастерской.");
@@ -70,45 +64,40 @@ public class Workshop implements Repair {
         }
     }
 
-    public void newColorWorkshop() {
-        Scanner scanner = new Scanner(System.in);
+    @Override
+    public void newColor() {
         for (Transport tran : this.getTransport()) {
             if (tran != null) {
-                if (aerosolCount == 0) {
+                if (getAerosolCount() == 0) {
                     System.out.println("Краска закончилась. Ни одно транспортное средство не может быть окрашено.");
                     return;
                 } else {
-                    if (tran instanceof Velo) {
-                        Velo velo = (Velo) tran;
-                            System.out.println("Введите цвет, которым вы хотите окрасить велосипед " + velo.getBrandName() + ":");
-                        velo.newColor(scanner.nextLine());
-                            System.out.println("Аэрозоль до: " + aerosolCount);
-                        setAerosolCount(aerosolCount - 1);
-                            System.out.println("Аэрозоль после: " + aerosolCount);
+                    if (tran instanceof Velo velo) {
+                        velo.newColor();
+                            System.out.println("Аэрозоль до: " + getAerosolCount());
+                        setAerosolCount(getAerosolCount() - 1);
+                            System.out.println("Аэрозоль после: " + getAerosolCount());
                             System.out.println("==========================================");
                         // минус 1 краска
-                    } else if (tran instanceof Macine) {
-                        Macine mac = (Macine) tran;
-                        if (aerosolCount < 10) {
+                    } else if (tran instanceof Macine mac) {
+                        if (getAerosolCount() < 10) {
                             System.out.println("Нехватка краски. Данное транспортное средство (" + mac.getBrandName() + ") не может быть окрашено.");
                         } else {
-                                System.out.println("Введите цвет, которым вы хотите окрасить машину " + mac.getBrandName() + ":");
-                            mac.newColor(scanner.nextLine());
-                                System.out.println("Аэрозоль до: " + aerosolCount);
-                            setAerosolCount(aerosolCount - 10);
-                                System.out.println("Аэрозоль после: " + aerosolCount);
+                            mac.newColor();
+                                System.out.println("Аэрозоль до: " + getAerosolCount());
+                            setAerosolCount(getAerosolCount() - 10);
+                                System.out.println("Аэрозоль после: " + getAerosolCount());
                                 System.out.println("==========================================");
                         }
                     } else {
                         Train train = (Train) tran;
-                        if (aerosolCount < 50) {
+                        if (getAerosolCount() < 50) {
                             System.out.println("Нехватка краски. Данное транспортное средство (" + train.getBrandName() + ") не может быть окрашено.");
                         } else {
-                                System.out.println("Введите цвет, которым вы хотите окрасить поезд " + train.getBrandName() + ":");
-                            train.newColor(scanner.nextLine());
-                                System.out.println("Аэрозоль до: " + aerosolCount);
-                            setAerosolCount(aerosolCount - 50);
-                                System.out.println("Аэрозоль после: " + aerosolCount);
+                            train.newColor();
+                                System.out.println("Аэрозоль до: " + getAerosolCount());
+                            setAerosolCount(getAerosolCount() - 50);
+                                System.out.println("Аэрозоль после: " + getAerosolCount());
                                 System.out.println("==========================================");
                         }
                     }

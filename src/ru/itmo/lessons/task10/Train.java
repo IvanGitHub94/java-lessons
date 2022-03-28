@@ -1,5 +1,7 @@
 package ru.itmo.lessons.task10;
 
+import java.util.Scanner;
+
 public class Train extends Transport implements ColorChange {
     private int wagons;
 
@@ -23,8 +25,10 @@ public class Train extends Transport implements ColorChange {
 
     // ----------------------------------------- Methods
     @Override
-    public void newColor(String color) {
-        setColor(color);
-        System.out.println("Поезд покрашен! Цвет - " + color);
+    public void newColor() {
+        Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите цвет, которым вы хотите окрасить поезд " + this.getBrandName() + ":");
+        setColor(scanner.nextLine());
+            System.out.println("Поезд покрашен! Цвет - " + getColor());
     }
 }

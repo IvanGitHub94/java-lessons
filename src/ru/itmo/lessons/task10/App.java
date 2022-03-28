@@ -21,16 +21,11 @@ public class App {
             workshop.setTransport(arrTr);
             workshop.addTransport(v1, v2, m1, m3, train1);
 
-            workshop.setAerosolCount(1);
+            workshop.setAerosolCount(72);
 ////////////////////////////////////////////////////////////////////////
             workshop.doRepair();
                 System.out.println("---------------------------------------------------------------------------------");
-            workshop.newColorWorkshop();
+            workshop.newColor();
 ////////////////////////////////////////////////////////////////////////
-        /*System.out.println(v1.getColor());
-        System.out.println(v2.getColor());
-        System.out.println(m1.getColor());
-        System.out.println(m3.getColor());
-        System.out.println(train1.getColor());*/
     }
 }

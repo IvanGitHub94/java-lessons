@@ -1,6 +1,7 @@
 package ru.itmo.lessons.task10;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Velo extends Transport implements Repair, ColorChange {
     private String type;
@@ -29,7 +30,7 @@ public class Velo extends Transport implements Repair, ColorChange {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Velo velo = (Velo) o;
-        return super.getState() == velo.getState() && Objects.equals(velo.getColor(), velo.getColor())
+        return super.getState() == velo.getState() && Objects.equals(super.getColor(), velo.getColor())
                 && Objects.equals(super.getBrandName(), velo.getBrandName())
                 && Objects.equals(this.getType(), velo.getType());
     }
@@ -43,7 +44,6 @@ public class Velo extends Transport implements Repair, ColorChange {
     public void doRepair() {
         if (this.getState() == 10) {
             System.out.println("Велосипед не нуждается в ремонте.");
-            System.out.println("__________");
         }
         else {
             System.out.println("Ремонт произведен. " +
@@ -57,8 +57,10 @@ public class Velo extends Transport implements Repair, ColorChange {
     }
 
     @Override
-    public void newColor(String color) {
-        setColor(color);
-        System.out.println("Велосипед покрашен! Цвет - " + color);
+    public void newColor() {
+        Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите цвет, которым вы хотите окрасить велосипед " + this.getBrandName() + ":");
+        setColor(scanner.nextLine());
+            System.out.println("Велосипед покрашен! Цвет - " + getColor());
     }
 }
