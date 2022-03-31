@@ -53,13 +53,9 @@ public class Workshop implements Repair, ColorChange {
     public void doRepair() {
         for (Transport tran : this.getTransport()) {
             if (tran != null) {
-                if (tran instanceof Macine mac) {
-                    mac.doRepair();
-                }
-                else if (tran instanceof Velo velo) {
-                    velo.doRepair();
-                }
-                else System.out.println("Данный транспорт не ремонтируется в мастерской.");
+                if (tran instanceof Repair) {
+                    ((Repair) tran).doRepair();
+                } else System.out.println("Данный транспорт не ремонтируется в мастерской.");
             }
         }
     }
@@ -72,35 +68,21 @@ public class Workshop implements Repair, ColorChange {
                     System.out.println("Краска закончилась. Ни одно транспортное средство не может быть окрашено.");
                     return;
                 } else {
-                    if (tran instanceof Velo velo) {
-                        velo.newColor();
+                    if (tran instanceof ColorChange) {
+                        if ((tran instanceof Macine && getAerosolCount() < 10)
+                                || (tran instanceof Train && getAerosolCount() < 50)) {
+                            System.out.println("Нехватка краски. Данное транспортное средство (" + tran.getBrandName() + ") не может быть окрашено.");
+                        } else {
+                            ((ColorChange) tran).newColor();
                             System.out.println("Аэрозоль до: " + getAerosolCount());
-                        setAerosolCount(getAerosolCount() - 1);
+                                if (tran instanceof Velo) setAerosolCount(getAerosolCount() - 1);
+                                if (tran instanceof Macine) setAerosolCount(getAerosolCount() - 10);
+                                if (tran instanceof Train) setAerosolCount(getAerosolCount() - 50);
                             System.out.println("Аэрозоль после: " + getAerosolCount());
                             System.out.println("==========================================");
-                        // минус 1 краска
-                    } else if (tran instanceof Macine mac) {
-                        if (getAerosolCount() < 10) {
-                            System.out.println("Нехватка краски. Данное транспортное средство (" + mac.getBrandName() + ") не может быть окрашено.");
-                        } else {
-                            mac.newColor();
-                                System.out.println("Аэрозоль до: " + getAerosolCount());
-                            setAerosolCount(getAerosolCount() - 10);
-                                System.out.println("Аэрозоль после: " + getAerosolCount());
-                                System.out.println("==========================================");
-                        }
-                    } else {
-                        Train train = (Train) tran;
-                        if (getAerosolCount() < 50) {
-                            System.out.println("Нехватка краски. Данное транспортное средство (" + train.getBrandName() + ") не может быть окрашено.");
-                        } else {
-                            train.newColor();
-                                System.out.println("Аэрозоль до: " + getAerosolCount());
-                            setAerosolCount(getAerosolCount() - 50);
-                                System.out.println("Аэрозоль после: " + getAerosolCount());
-                                System.out.println("==========================================");
                         }
                     }
+                    else System.out.println("Данный объект не подлежит покраске.");
                 }
             }
         }

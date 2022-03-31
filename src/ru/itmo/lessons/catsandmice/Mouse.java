@@ -1,4 +1,4 @@
-package ru.itmo.lessons.catsAndMice;
+package ru.itmo.lessons.catsandmice;
 
 public class Mouse {
     private String name;

@@ -1,9 +1,9 @@
-package ru.itmo.lessons.catsAndMice;
+package ru.itmo.lessons.catsandmice;
 
 public class CatApp {
     public static void main(String[] args) {
         Cat cat1 = new Cat("Васька", 26, 5);
-        Cat cat2 = new Cat("Пушок", 22, 5);
+        Cat cat2 = new Cat("Пушок", 24, 6);
 
         Mouse mouse1 = new Mouse("№1",25);
         Mouse mouse2 = new Mouse("№2",24);

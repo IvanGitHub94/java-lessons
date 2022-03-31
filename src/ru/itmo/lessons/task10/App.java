@@ -21,7 +21,7 @@ public class App {
             workshop.setTransport(arrTr);
             workshop.addTransport(v1, v2, m1, m3, train1);
 
-            workshop.setAerosolCount(72);
+            workshop.setAerosolCount(2);
 ////////////////////////////////////////////////////////////////////////
             workshop.doRepair();
                 System.out.println("---------------------------------------------------------------------------------");
