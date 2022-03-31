@@ -1,4 +1,4 @@
-package ru.itmo.lessons.catsAndMice;
+package ru.itmo.lessons.catsandmice;
 
 import java.util.Arrays;
 
@@ -83,27 +83,26 @@ public class Cat {
     public void catConflict(Cat enemy) {
         if (this.weight > enemy.weight) {
             System.out.println("Кот " + this.name + " победил соперника.");
-            for (int i = 0; i < enemy.getCaughtMice().length; i++) {
-                if (enemy.getCaughtMice()[i] != null) {
-                    this.addMouse(enemy.getCaughtMice()[i]);
-                    enemy.getCaughtMice()[i] = null;
-                }
-            }
+            enemy.minusMice(this);
         }
         else if (this.weight < enemy.weight) {
             System.out.println("Кот " + enemy.name + " победил соперника.");
-            for (int i = 0; i < this.getCaughtMice().length; i++) {
-                if (this.getCaughtMice()[i] != null) {
-                    enemy.addMouse(this.getCaughtMice()[i]);
-                    this.getCaughtMice()[i] = null;
-                }
-            }
+            this.minusMice(enemy);
         }
         else {
             System.out.println("Вес котов равен - победителей нет.");
             System.out.println("Пока коты были заняты, все мыши разбежались.");
             Arrays.fill(this.caughtMice, null);
             Arrays.fill(enemy.caughtMice, null);
+        }
+    }
+
+    private void minusMice(Cat cat) {
+        for (int i = 0; i < this.getCaughtMice().length; i++) {
+            if (this.getCaughtMice()[i] != null) {
+                cat.addMouse(this.getCaughtMice()[i]);
+                this.getCaughtMice()[i] = null;
+            }
         }
     }
 }
