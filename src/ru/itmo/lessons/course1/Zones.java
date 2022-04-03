@@ -2,7 +2,7 @@ package ru.itmo.lessons.course1;
 
 public enum Zones {
     GUM(0), POOL(0), GROUPS(0);
-    int people;
+    private int people;
 
     Zones(int people) {
         setPeople(people);
@@ -15,14 +15,21 @@ public enum Zones {
         this.people = people;
     }
 
+    public void addPeople () {
+        if (!(this.getPeople() < 20)) {
+            throw new IllegalArgumentException("В этой зоне больше нет места.");
+        }
+        else { setPeople(this.getPeople() + 1); }
+    }
+
     public int getPeople() {
         return people;
     }
 
     @Override
     public String toString() {
-        return "Zones{" +
-                "people=" + people +
+        return name() +
+                " people=" + people +
                 '}';
     }
 }
