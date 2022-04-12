@@ -166,7 +166,7 @@ public class MapTask {
         HashMap< ArrayList<String> , Integer> temp = new HashMap<>();
 
         HashSet<String> strings = new HashSet<String>();
-
+// добавляем в сет чтобы не сравнивать лишние разы и корректно увеличивать счетчик далее
         for (ArrayList<String> arrayList : /*res.values()*/ taskFour2(text).values()) {
             for (String s : arrayList) {
                 strings.add(s.toLowerCase());
@@ -179,49 +179,37 @@ public class MapTask {
                 copy.add(s.toLowerCase());
             }
         }
-        ArrayList<String> copy2 = new ArrayList<String>(copy);
 
-        /*for (String str : copy) {
-            System.out.println(str + " | ");
-        }*/
-
-        /*for (String s : strings) {
-            System.out.print(s + ", ");
-        }
-        System.out.println("\n");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");*/
-
+        // подсчет сколько раз встречается то или иное слово и добавление в мапу - ключ - список из всех одинаковых слов,
+        // значение - сколько данное слово встречается в тексте
         int count = 0;
         for (String s1 : strings) {
             ArrayList<String> arrL = new ArrayList<>();
             for (String s : copy) {
                 if (s.equals(s1)) {
                     count++;
-                    System.out.print(s1 + " ");
                     arrL.add(s1);
                 }
             }
-            System.out.println(" | " + count);
             temp.put(arrL, count);
             count = 0;
-            System.out.println("__________________");
         }
-        System.out.println("vpvv|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 
         int a = Integer.MIN_VALUE;
         for (Map.Entry<ArrayList<String>, Integer> entry : temp.entrySet()) {
-            System.out.println(entry.getKey() + " | " + entry.getValue());
-            //System.out.println(entry.getValue() + " | " + entry.getKey());
+            //System.out.println(entry.getKey() + " | " + entry.getValue());
             if (entry.getValue() > a) a = entry.getValue();
         }
-        System.out.println(a + "\n");
+        System.out.println(a + "\n"); // число повторений самого частого слова в тексте
 
-        int q = a;
+        int q = 9;
+        int top = 1;
         for (int i = a; i > 0; i--) {
         for (Map.Entry<ArrayList<String>, Integer> entry : temp.entrySet()) {
                 if (entry.getValue() == i) {
                     if (q < 0) break;
-                    System.out.println(entry.getKey() );
+                    System.out.println(top + " место: " + entry.getKey().get(0) + " - количество упоминаний в тексте - " + entry.getKey().size());
+                    top++;
                     q--;
                 }
             }
