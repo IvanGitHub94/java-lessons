@@ -221,7 +221,7 @@ public class MapTask {
         for (Map.Entry<ArrayList<String>, Integer> entry : temp.entrySet()) {
                 if (entry.getValue() == i) {
                     if (q < 0) break;
-                    System.out.println(entry.getKey());
+                    System.out.println(entry.getKey() );
                     q--;
                 }
             }
