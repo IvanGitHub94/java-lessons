@@ -68,6 +68,18 @@ public class MapTask {
                 "packages and web page editors now use Lorem Ipsum as their default model text and a search for lorem ipsum will " +
                 "uncover many web sites still uncover in their infancy Various versions uncover have evolved over the years uncover sometimes by accident" +
                 " sometimes on purpose injected humour and the like";
+        //String text = "still still still use will still using like fact" + "here look still";
+        String target = "more";
+        System.out.println("______________ 4.1 ______________");
+        System.out.println(taskFour1(target, text));
+
+        System.out.println("______________ 4.2 ______________");
+        for (Map.Entry< Integer, ArrayList<String> > entry : taskFour2(text).entrySet()) {
+            System.out.println(entry.getKey() + " | " + entry.getValue());
+        }
+
+        System.out.println("______________ 4.3 ______________");
+        taskFour3(text);
 
     }
 
@@ -117,5 +129,91 @@ public class MapTask {
             }
         }
         return result;
+    }
+
+    public static int taskFour1(String target, String text) {
+        // ! пришлось использовать регулярку, так как в тексте есть конструкция "more-or-less" и "-" не позволяют корректно отработать
+        String[] words = text.replaceAll("\\W+", " ").split(" ");
+        int count = 0;
+        for (String s : words) {
+            if (s.equalsIgnoreCase(target)) count++;
+        }
+        return count;
+    }
+
+    public static HashMap< Integer, ArrayList<String> > taskFour2(String text) {
+        String[] words = text.replaceAll("\\W+", " ").split(" ");
+        HashSet<Integer> lengths = new HashSet<>();
+
+        for (String s : words) {
+            lengths.add(s.length());
+        }
+
+        HashMap< Integer, ArrayList<String> > res = new HashMap<>();
+        for (Integer integer : lengths) {
+            ArrayList<String> temp = new ArrayList<>();
+            for (String str : words) {
+                if (str.length() == integer) {
+                    temp.add(str);
+                    res.put(integer, temp);
+                }
+            }
+        }
+        return res;
+    }
+
+    public static void /*ArrayList<String>*/ taskFour3(/*HashMap < Integer, ArrayList<String> > res*/ String text) {
+        HashMap< ArrayList<String> , Integer> temp = new HashMap<>();
+
+        HashSet<String> strings = new HashSet<String>();
+// добавляем в сет чтобы не сравнивать лишние разы и корректно увеличивать счетчик далее
+        for (ArrayList<String> arrayList : /*res.values()*/ taskFour2(text).values()) {
+            for (String s : arrayList) {
+                strings.add(s.toLowerCase());
+            }
+        }
+
+        ArrayList<String> copy = new ArrayList<String>();
+        for (ArrayList<String> arr : taskFour2(text).values()) {
+            for (String s : arr) {
+                copy.add(s.toLowerCase());
+            }
+        }
+
+        // подсчет сколько раз встречается то или иное слово и добавление в мапу - ключ - список из всех одинаковых слов,
+        // значение - сколько данное слово встречается в тексте
+        int count = 0;
+        for (String s1 : strings) {
+            ArrayList<String> arrL = new ArrayList<>();
+            for (String s : copy) {
+                if (s.equals(s1)) {
+                    count++;
+                    arrL.add(s1);
+                }
+            }
+            temp.put(arrL, count);
+            count = 0;
+        }
+
+        int a = Integer.MIN_VALUE;
+        for (Map.Entry<ArrayList<String>, Integer> entry : temp.entrySet()) {
+            //System.out.println(entry.getKey() + " | " + entry.getValue());
+            if (entry.getValue() > a) a = entry.getValue();
+        }
+        System.out.println(a + "\n"); // число повторений самого частого слова в тексте
+
+        int q = 9;
+        int top = 1;
+        for (int i = a; i > 0; i--) {
+        for (Map.Entry<ArrayList<String>, Integer> entry : temp.entrySet()) {
+                if (entry.getValue() == i) {
+                    if (q < 0) break;
+                    System.out.println(top + " место: " + entry.getKey().get(0) + " - количество упоминаний в тексте - " + entry.getKey().size());
+                    top++;
+                    q--;
+                }
+            }
+        }
+
     }
 }
