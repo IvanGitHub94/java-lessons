@@ -81,7 +81,7 @@ public class Abonement {
         this.zoneTypeFull = zoneTypeFull;
         this.fillZone(zoneTypeFull);
     }
-//////////////// Добавление по 1 человеку в соответствующую зону
+//////////////// Добавление по 1 абонементу (регистрация абонемента, не фактическое присутствие человека) в соответствующую зону
     private void fillZone (Zones[] zonesType) {
         for (Zones zones : zonesType) {
             zones.setPeople(zones.getPeople() + 1);
