@@ -10,8 +10,6 @@ public class Client {
     private String ip;
     private Scanner scanner;
 
-    private boolean flag = true;
-
     public Client(int port, String ip) {
         this.port = port;
         this.ip = ip;
