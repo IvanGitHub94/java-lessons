@@ -1,5 +1,6 @@
 package ru.itmo.lessons.course1;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 public class Fitness {
@@ -47,16 +48,45 @@ public class Fitness {
     // ------------------------------------------------------ Methods
 
     public void fitnessClose() {
-        Arrays.fill(abonGym, null);
-        Arrays.fill(abonPool, null);
-        Arrays.fill(abonGroup, null);
+        Arrays.fill(this.abonGym, null);
+        Arrays.fill(this.abonPool, null);
+        Arrays.fill(this.abonGroup, null);
+
+        Zones.GUM.setPeople(0);
+        Zones.POOL.setPeople(0);
+        Zones.GROUPS.setPeople(0);
     }
 
     public void addAbon(Abonement abonement) {
+        //System.out.println(abonement.getClient().getWantZone());
+        if (abonement.getDateRegEnd().isBefore(LocalDate.now())) {
+            System.out.println("Абонемент просрочен.");
+            return;
+        }
+
+        boolean b = false;
+        for (Zones z : abonement.getZone()) {
+            if (abonement.getClient().getWantZone().equals(z)) {
+                b = true;
+            }
+        }
+        if (!b) {
+            System.out.println("Желаемая зона отсутствует в абонементе клиента.");
+            return;
+        }
+// так как любой тип абонемента включает в себя зону тренажерный зал,
+// то этот массив будет заполнятся в любом случае независимо от типа абонемента
+// и именно поэтому нет смысла проверять клиентов по equals везде - если не пройдет проверка на заполнении в тренажерном зале,
+// то такой абонемент и другие зоны не займет
             for (int i = 0; i < abonGym.length; i++) {
                 if (abonGym[i] == null) {
                     abonGym[i] = abonement;
                     return;
+                } else {
+                    if (abonGym[i].getClient().equals(abonement.getClient())) {
+                        System.out.println("Нельзя добавлять абонементы с одинаковыми клиентами.");
+                        return;
+                    }
                 }
             }
             if (abonement.getAbonType().equals(AbonTypes.ONEDAY)) {

@@ -6,8 +6,68 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        Client client = new Client("Jack", "Smith", LocalDate.of(2004, 4, 1));
-            Abonement abonement = new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3));
+
+        Client client = new Client("Jack", "Smith", LocalDate.of(2004, 4, 1), Zones.GUM);
+        Client client1 = new Client("Jo", "Smith", LocalDate.of(2004, 4, 1), Zones.GROUPS);
+        //client.setWantZone(Zones.GROUPS);
+        Abonement[] gym = new Abonement[20];
+        Abonement[] pool = new Abonement[20];
+        Abonement[] groups = new Abonement[20];
+
+        Fitness fitness = new Fitness(gym, pool, groups);
+        fitness.addAbon(new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client1, AbonTypes.ONEDAY, LocalDate.of(2022, 4, 20)));
+
+        for (Abonement a : fitness.getAbonGym()) {
+            System.out.println(a);
+        }
+
+        /*Fitness fitness = new Fitness(gym, pool, groups);
+        fitness.addAbon(new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3)),
+
+            new Abonement(client, AbonTypes.EVERYDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.EVERYDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.EVERYDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.EVERYDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.EVERYDAY, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.EVERYDAY, LocalDate.of(2022, 7, 3)),
+
+            new Abonement(client, AbonTypes.FULL, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.FULL, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.FULL, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.FULL, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.FULL, LocalDate.of(2022, 7, 3)),
+                new Abonement(client, AbonTypes.FULL, LocalDate.of(2022, 7, 3))
+                );
+
+        System.out.println("GYM: " + Zones.GUM.getPeople());
+        System.out.println("POOL: " + Zones.POOL.getPeople());
+        System.out.println("GROUPS " + Zones.GROUPS.getPeople());
+
+        for (Abonement a : fitness.getAbonGym()) {
+            System.out.println(a);
+        }
+        System.out.println();
+
+        fitness.fitnessClose();
+
+        for (Abonement a : fitness.getAbonGym()) {
+            System.out.print(a + " ");
+        }
+
+        System.out.println();
+        System.out.println("GYM: " + Zones.GUM.getPeople());
+        System.out.println("POOL: " + Zones.POOL.getPeople());
+        System.out.println("GROUPS " + Zones.GROUPS.getPeople());*/
+
+            /*Abonement abonement = new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3));
 
         System.out.println("Дата окончания абонемента: " + abonement.getDateRegEnd());
         System.out.println(abonement.getAbonType());
@@ -48,7 +108,7 @@ public class App {
         System.out.println(abonement13.getEvening());
         System.out.println(Arrays.toString(abonement13.getZone()));
 
-        System.out.println(Zones.GUM.getPeople());
+        System.out.println(Zones.GUM.getPeople());*/
 
     }
 }

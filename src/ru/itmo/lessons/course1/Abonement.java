@@ -56,9 +56,9 @@ public class Abonement {
     }
 
     public void setDateRegEnd(LocalDate dateRegEnd) {
-        if (dateRegEnd.isBefore(dateRegistration)) {
+        /*if (dateRegEnd.isBefore(dateRegistration)) {
             throw new IllegalArgumentException("Дата окончания абонемента не может быть раньше даты регистрации.");
-        }
+        }*/
         this.dateRegEnd = dateRegEnd;
     }
 

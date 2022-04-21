@@ -9,7 +9,7 @@ public enum Zones {
     }
 
     public void setPeople(int people) {
-        if (people < 0 || people > 4) {
+        if (people < 0 || people > 20) {
             throw new IllegalArgumentException("Значение не может быть отрицательным или больше 20.");
         }
         this.people = people;
