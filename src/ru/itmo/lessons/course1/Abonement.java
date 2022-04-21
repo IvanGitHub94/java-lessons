@@ -126,9 +126,7 @@ public class Abonement {
         return zoneTypeFull;
     }
 
-
     // ------------------------------------------------------ Methods
-
 
     @Override
     public boolean equals(Object o) {

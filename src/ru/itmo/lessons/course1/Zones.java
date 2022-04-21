@@ -5,6 +5,6 @@ public enum Zones {
 
     @Override
     public String toString() {
-        return "Зона: " + name();
+        return "Zone: " + name();
     }
 }

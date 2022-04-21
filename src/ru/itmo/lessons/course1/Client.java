@@ -69,7 +69,6 @@ public class Client {
 
     // ------------------------------------------------------ Methods
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
