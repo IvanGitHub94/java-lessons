@@ -28,7 +28,6 @@ public class Client {
             System.out.println("Введите сообщение");
             messageText = scanner.nextLine();
             sendAndPrintMessage(SimpleMessage.getMessage(name, messageText));
-            if (messageText.equals("/exit")) System.exit(0);
         }
     }
 

@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         Client client = new Client("Jack", "Smith", LocalDate.of(2004, 4, 1));
-            Abonement abonement = new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 4, 3));
+            Abonement abonement = new Abonement(client, AbonTypes.ONEDAY, LocalDate.of(2022, 7, 3));
 
         System.out.println("Дата окончания абонемента: " + abonement.getDateRegEnd());
         System.out.println(abonement.getAbonType());
@@ -18,13 +18,35 @@ public class App {
         //////////////
         System.out.println("------------------------------------------");
         Client client11 = new Client("Jay", "Sim", LocalDate.of(2004, 4, 1));
-            Abonement abonement11 = new Abonement(client11, AbonTypes.EVERYDAY, LocalDate.of(2022, 4, 3));
+            Abonement abonement11 = new Abonement(client11, AbonTypes.EVERYDAY, LocalDate.of(2022, 7, 3));
 
         System.out.println("Дата окончания абонемента: " + abonement11.getDateRegEnd());
         System.out.println(abonement11.getAbonType());
         System.out.println(abonement11.getMorning());
         System.out.println(abonement11.getEvening());
         System.out.println(Arrays.toString(abonement11.getZone()));
+
+        System.out.println("------------------------------------------");
+
+        Client client12 = new Client("Jay", "Sim", LocalDate.of(2004, 4, 1));
+        Abonement abonement12 = new Abonement(client12, AbonTypes.EVERYDAY, LocalDate.of(2022, 7, 3));
+
+        System.out.println("Дата окончания абонемента: " + abonement12.getDateRegEnd());
+        System.out.println(abonement12.getAbonType());
+        System.out.println(abonement12.getMorning());
+        System.out.println(abonement12.getEvening());
+        System.out.println(Arrays.toString(abonement12.getZone()));
+
+        System.out.println("------------------------------------------");
+
+        Client client13 = new Client("Jay", "Sim", LocalDate.of(2004, 4, 1));
+        Abonement abonement13 = new Abonement(client13, AbonTypes.FULL, LocalDate.of(2022, 7, 3));
+
+        System.out.println("Дата окончания абонемента: " + abonement13.getDateRegEnd());
+        System.out.println(abonement13.getAbonType());
+        System.out.println(abonement13.getMorning());
+        System.out.println(abonement13.getEvening());
+        System.out.println(Arrays.toString(abonement13.getZone()));
 
         System.out.println(Zones.GUM.getPeople());
 

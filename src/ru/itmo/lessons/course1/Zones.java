@@ -9,18 +9,18 @@ public enum Zones {
     }
 
     public void setPeople(int people) {
-        if (people < 0 || people > 20) {
+        if (people < 0 || people > 4) {
             throw new IllegalArgumentException("Значение не может быть отрицательным или больше 20.");
         }
         this.people = people;
     }
 
-    public void addPeople () {
-        if (!(this.getPeople() < 20)) {
+    /*public void addPeople () {
+        if (this.getPeople() > 2) {
             throw new IllegalArgumentException("В этой зоне больше нет места.");
         }
         else { setPeople(this.getPeople() + 1); }
-    }
+    }*/
 
     public int getPeople() {
         return people;

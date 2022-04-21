@@ -84,7 +84,7 @@ public class Abonement {
 //////////////// Добавление по 1 человеку в соответствующую зону
     private void fillZone (Zones[] zonesType) {
         for (Zones zones : zonesType) {
-            zones.addPeople();
+            zones.setPeople(zones.getPeople() + 1);
         }
     }
 
@@ -126,7 +126,20 @@ public class Abonement {
         }
     }
 
-// ------------------------------------------------------ Methods
+    public Zones[] getZoneTypeOneDay() {
+        return zoneTypeOneDay;
+    }
+
+    public Zones[] getZoneTypeEveryDay() {
+        return zoneTypeEveryDay;
+    }
+
+    public Zones[] getZoneTypeFull() {
+        return zoneTypeFull;
+    }
+
+
+    // ------------------------------------------------------ Methods
 
     @Override
     public String toString() {
