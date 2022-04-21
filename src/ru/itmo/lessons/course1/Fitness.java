@@ -74,7 +74,6 @@ public class Fitness {
                     return;
                 }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         for (int i = 0; i < arraySize; i++) {
             if (abonGym[i] == null) {
                 abonGym[i] = abonement;

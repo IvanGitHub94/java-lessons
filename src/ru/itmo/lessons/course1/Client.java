@@ -21,7 +21,6 @@ public class Client {
 
     // ------------------------------------------------------ Setters
 
-
     public void setWantZone(Zones wantZone) {
         this.wantZone = wantZone;
     }

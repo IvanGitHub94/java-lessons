@@ -1,9 +1,6 @@
 package ru.itmo.lessons.course1;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
-
 public class App {
     public static void main(String[] args) {
 
@@ -36,7 +33,7 @@ public class App {
         System.out.println("--------------------------------------");
         System.out.println();
 
-        System.out.println("GROUPS");
+        System.out.println("GROUP");
         for (Abonement a : fitness.getAbonGroup()) {
             System.out.println(a);
         }
