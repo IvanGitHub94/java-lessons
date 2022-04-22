@@ -21,7 +21,6 @@ public class Client {
 
     // ------------------------------------------------------ Setters
 
-
     public void setWantZone(Zones wantZone) {
         this.wantZone = wantZone;
     }
@@ -43,9 +42,9 @@ public class Client {
     public void setYearBirth(LocalDate yearBirth) {
         LocalDate now = LocalDate.now();
         long diffYears = ChronoUnit.YEARS.between(yearBirth, now);
-            if (diffYears < 18 || diffYears > 90) {
-                throw new IllegalArgumentException("Абонемент не может быть продан несовершеннолетним или людям старше 90 лет.");
-            }
+        if (diffYears < 18 || diffYears > 90) {
+            throw new IllegalArgumentException("Абонемент не может быть продан несовершеннолетним или людям старше 90 лет.");
+        }
         this.yearBirth = yearBirth;
     }
 
@@ -70,7 +69,6 @@ public class Client {
 
     // ------------------------------------------------------ Methods
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,5 +80,15 @@ public class Client {
     @Override
     public int hashCode() {
         return Objects.hash(name, lastName, yearBirth);
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", yearBirth=" + yearBirth +
+                ", wantZone=" + wantZone +
+                '}';
     }
 }
