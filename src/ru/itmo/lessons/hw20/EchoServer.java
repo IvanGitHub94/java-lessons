@@ -3,8 +3,6 @@ package ru.itmo.lessons.hw20;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
 
 public class EchoServer {
     private int port;
@@ -40,6 +38,14 @@ public class EchoServer {
                     connection.sendMessage( SimpleMessage.getMessage("server", "ping: "
                             + (System.currentTimeMillis() - a)
                             + " ms") );
+                }
+                else if (temp.getText().equals("/exit")) {
+                    connection.sendMessage( SimpleMessage.getMessage("server", "Соединение разорвано." ));
+                    try {
+                        connection.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 else connection.sendMessage(SimpleMessage.getMessage("server", "сообщение получено"));
             }

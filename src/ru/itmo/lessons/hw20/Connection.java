@@ -27,6 +27,7 @@ public class Connection implements AutoCloseable {
         return (SimpleMessage) input.readObject();
     }
 
+
     @Override
     public void close() throws Exception {
         input.close();
