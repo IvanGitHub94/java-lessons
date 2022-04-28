@@ -1,7 +1,7 @@
 package ru.itmo.lessons.lesson7.hw07;
 
 public class Teacher extends LessonProcess{
-    private int teacherLevel;
+    protected int teacherLevel;
 
     // Конструкторы
     public Teacher(String name, int age, String subject) {
