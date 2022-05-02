@@ -81,4 +81,14 @@ public class Client {
     public int hashCode() {
         return Objects.hash(name, lastName, yearBirth);
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", yearBirth=" + yearBirth +
+                ", wantZone=" + wantZone +
+                '}';
+    }
 }

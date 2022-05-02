@@ -21,13 +21,13 @@ public class Client {
         System.out.println("Введите имя");
         String name = scanner.nextLine();
         String messageText;
-
         while (true){
-            // exit
-            // ping
+        // exit
+        // ping
             System.out.println("Введите сообщение");
             messageText = scanner.nextLine();
             sendAndPrintMessage(SimpleMessage.getMessage(name, messageText));
+            if (messageText.equals("/exit")) System.exit(0);
         }
     }
 
