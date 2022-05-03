@@ -105,6 +105,7 @@ public class PupilTask {
 
         // 6.
         List<Pupil> pupilsCopy = new ArrayList<>(pupils);
+
         HashSet<String> targetSet = new HashSet<>();
         pupilsCopy.removeIf(p -> !targetSet.add(p.getName()));
 
