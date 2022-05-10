@@ -1,13 +1,13 @@
 package ru.itmo.lessons.course2;
 
 public class ChooseTwoCommand implements Command{
-        private Slider slider;
+        private Menu menu;
 
-        public ChooseTwoCommand(Slider slider){
-            this.slider = slider;
+        public ChooseTwoCommand(Menu menu){
+            this.menu = menu;
         }
-
+    // для загрузки игры
         public void execute(){
-            slider.slideTwo();
+            menu.slideTwo();
         }
 }

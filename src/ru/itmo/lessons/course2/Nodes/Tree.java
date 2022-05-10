@@ -59,18 +59,4 @@ public class Tree {
             }
         }
     }
-
-    /**
-     * Вывод всех элементов дерева методом асиметричного обхода
-     * @param startNode
-     */
-    public void print(Node startNode){
-        if(startNode != null){//условие сработает, когда мы достигним конца дерева и потомков не останется
-
-            print(startNode.leftChild);//рекурсивно вызываем левых потомков
-            startNode.printNode();//вызов метода принт
-            print(startNode.rightChild);//вызов правых
-        }
-    }
-
 }

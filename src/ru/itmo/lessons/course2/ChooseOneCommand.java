@@ -1,13 +1,13 @@
 package ru.itmo.lessons.course2;
 
 public class ChooseOneCommand implements Command{
-        private Slider slider;
+        private Menu menu;
 
-        public ChooseOneCommand(Slider slider){
-            this.slider = slider;
+        public ChooseOneCommand(Menu menu){
+            this.menu = menu;
         }
-
+    // для старта игры
         public void execute(){
-            slider.slideOne();
+            menu.slideOne();
         }
 }
