@@ -4,12 +4,7 @@ public class Tree {
 
     Node root;
 
-    /**
-     * Поиск элемента в дереве по ключу
-     * @param key
-     * @return
-     */
-
+    // Поиск элемента в дереве по ключу
     public Node find(int key){
         Node current = root;
         while(current.key!=key){
@@ -25,13 +20,9 @@ public class Tree {
         return current;
     }
 
-    /**
-     * Вставка в дерево. Суть таже что и поиск
-     * Только вместо вывода элемента к нему левым или правым потомком
-     * добавляем новый элемент
-     * @param key
-     * @param data
-     */
+    /* Вставка в дерево. Суть таже что и поиск
+       Только вместо вывода элемента к нему левым или правым потомком
+       добавляем новый элемент*/
     public void insert(int key, String data){
         Node node = new Node();
         node.key = key;

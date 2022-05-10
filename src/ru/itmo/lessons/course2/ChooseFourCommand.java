@@ -6,7 +6,7 @@ public class ChooseFourCommand implements Command{
     public ChooseFourCommand(Menu menu){
         this.menu = menu;
     }
-// для выхода из игры
+// для сохранения игры
     public void execute(){
         menu.slideFour();
     }

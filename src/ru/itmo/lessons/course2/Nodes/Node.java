@@ -6,12 +6,7 @@ public class Node {
     public Node leftChild; //левый потомок
     public Node rightChild; //правый потомок
 
-    /**
-     * Метод который выводит на экран содержимое узла
-     */
     public void printNode(){
-
-        //System.out.println("KEY " + key + " DATA: " + data);
         System.out.println(data);
     }
 
