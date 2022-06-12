@@ -3,10 +3,13 @@ package ru.itmo.lessons.course3;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EchoServer {
     private int port;
-    private Connection connection;
+    private ArrayBlockingQueue<SimpleMessage> queue = new ArrayBlockingQueue<SimpleMessage>(10, true);
+    private CopyOnWriteArrayList<Connection> connectionsList = new CopyOnWriteArrayList<Connection>();
 
     public EchoServer(int port){
         this.port = port;
@@ -15,39 +18,51 @@ public class EchoServer {
     public void start() throws IOException, ClassNotFoundException {
         try (ServerSocket serverSocket = new ServerSocket(port)){
             System.out.println("Server started...");
-            int connectionCount = 0;
-            while (true){
-                Socket socket = serverSocket.accept();
-                connection = new Connection(socket);
-                connectionCount++;
 
-                SimpleMessage temp = connection.readMessage();
-                long a = System.currentTimeMillis();
-                printMessage(temp);
-                if (temp.getText().equals("/help")) {
-                    connection.sendMessage(SimpleMessage.getMessage("server", "\n Список доступных команд:" +
-                            "\n /help - вывод списка команд;" +
-                            "\n /count - отображение количества подключений;" +
-                            "\n /ping - время, за которое сообщение доходит до сервера и возвращается обратно, мс;" +
-                            "\n /exit - завершение программы. \n"));
-                }
-                else if (temp.getText().equals("/count")) {
-                    connection.sendMessage(SimpleMessage.getMessage("server", String.valueOf(connectionCount)));
-                }
-                else if (temp.getText().equals("/ping")) {
-                    connection.sendMessage( SimpleMessage.getMessage("server", "ping: "
-                            + (System.currentTimeMillis() - a)
-                            + " ms") );
-                }
-                else if (temp.getText().equals("/exit")) {
-                    connection.sendMessage( SimpleMessage.getMessage("server", "Соединение разорвано." ));
-                    try {
-                        connection.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+            /*queue = new ArrayBlockingQueue<SimpleMessage>(10, true);
+            connectionsList = new CopyOnWriteArrayList<Connection>();*/
+
+            Thread send = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        try {
+                            SimpleMessage tempMsg = queue.take();
+                            for (Connection c : connectionsList) {
+                                if (c.getID() != tempMsg.getIDConnection()) { ////////////////////////////////////// ???
+                                    c.sendMessage(tempMsg);
+                                }
+                            }
+                        } catch (InterruptedException | IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-                else connection.sendMessage(SimpleMessage.getMessage("server", "сообщение получено"));
+            });
+            send.start();
+
+            while (true) {
+                Socket socket = serverSocket.accept();
+                Connection connection = new Connection(socket);
+
+                connectionsList.add(connection);
+                System.out.println("---------------- " + connection.getID());
+
+                Thread arrival = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            try {
+                                SimpleMessage t = connection.readMessage(connection.getID());
+                                queue.put(t);
+                                printMessage(t);
+                            } catch (IOException | ClassNotFoundException | InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+                arrival.start();
             }
         }
     }
@@ -57,7 +72,7 @@ public class EchoServer {
     }
 
     public static void main(String[] args) {
-        int port = 8290;
+        int port = 8090;
         EchoServer messageServer = new EchoServer(port);
         try {
             messageServer.start();

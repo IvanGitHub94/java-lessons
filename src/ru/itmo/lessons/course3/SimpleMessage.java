@@ -7,10 +7,12 @@ public class SimpleMessage implements Serializable {
     private String sender;
     private String text;
     private LocalDateTime dateTime;
+    private Double IDConnection;
 
-    public SimpleMessage(String sender, String text) {
+    public SimpleMessage(String sender, String text, Double IDConnection) {
         this.sender = sender;
         this.text = text;
+        this.IDConnection = IDConnection;
     }
 
     public String getSender() {
@@ -37,16 +39,25 @@ public class SimpleMessage implements Serializable {
         dateTime = LocalDateTime.now();
     }
 
+    public void setIDConnection(Double IDConnection) {
+        this.IDConnection = IDConnection;
+    }
+
+    public Double getIDConnection() {
+        return IDConnection;
+    }
+
     @Override
     public String toString() {
         return "SimpleMessage{" +
                 "sender='" + sender + '\'' +
                 ", text='" + text + '\'' +
                 ", dateTime=" + dateTime +
+                ", IDConnection=" + IDConnection +
                 '}';
     }
 
-    public static SimpleMessage getMessage(String sender, String text){
-        return new SimpleMessage(sender, text);
+    public static SimpleMessage getMessage(String sender, String text, Double IDConnection){
+        return new SimpleMessage(sender, text, IDConnection);
     }
 }

@@ -16,63 +16,57 @@ public class Client {
         this.ip = ip;
         scanner = new Scanner(System.in);
         try {
-            connection = new Connection(getSocket());
+            connection = new Connection(new Socket(ip, port));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void start() throws Exception {
-        System.out.println("Введите имя");
-        String name = scanner.nextLine();
-        String messageText;
-        while (true){
-            // exit
-            // ping
-            System.out.println("Введите сообщение");
-            messageText = scanner.nextLine();
-            sendAndPrintMessage(this.connection, SimpleMessage.getMessage(name, messageText));
-            if (messageText.equals("/exit")) System.exit(0);
-        }
-    }
-
-    private synchronized void sendAndPrintMessage(Connection connection, SimpleMessage message) throws Exception {
-
-        //try (Connection connection = new Connection(getSocket()) ){ нормально работает только с этим блоком,
-        // но как я понимаю из-за AutoCloseable соединение закрывается и создается новое при каждом вызове данного метода
-
-        connection.sendMessage(message);
-
-        SimpleMessage formServer = connection.readMessage();
-        System.out.println("ответ от сервера: " + formServer);
-        //}
-    }
-
-    private Socket getSocket() throws IOException {
-        Socket socket = new Socket(ip, port);
-        return socket;
-    }
-
-    public static void main(String[] args) {
-        int port = 8290;
-        String ip = "127.0.0.1";
-
-        Thread threadOne = new Thread(new Runnable() {
+    public void start() {
+        Thread reader = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    new Client(port, ip).start();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                while (true) {
+                    try {
+                        SimpleMessage formServer = connection.readMessage(connection.getID());
+                        System.out.println("ответ от сервера: " + formServer);
+                    } catch (IOException | ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-        threadOne.start();
+        reader.start();
 
-        /*try {
+        Thread sender = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Введите имя");
+                String name = scanner.nextLine();
+                String messageText;
+                while (true){
+                    System.out.println("Введите сообщение");
+                    messageText = scanner.nextLine();
+                    try {
+                        SimpleMessage s = SimpleMessage.getMessage(name, messageText, connection.getID());
+                        connection.sendMessage(s);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        sender.start();
+    }
+
+    public static void main(String[] args) {
+        int port = 8090;
+        String ip = "127.0.0.1";
+
+        try {
             new Client(port, ip).start();
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }
